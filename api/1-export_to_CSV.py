@@ -27,7 +27,7 @@ if __name__ == "__main__":
     todo_list = response_2.json()
 
     uid_filename = f'{num}.csv'
-    username = user[0].get('username')    
+    username = user[0].get('username')
 
     # remember the 'w' will overwrite any data existing in given file
     with open(uid_filename, mode='w') as employee_file:
