@@ -24,11 +24,13 @@ if __name__ == "__main__":
 
     user = response_1.json()  # .json() is a builtin JSON decoder
     # from request module, returning a list of dictionaries in this case
-    username = user[0].get('username')
-
     todo_list = response_2.json()
 
-    with open('USER_ID.csv', mode='w') as employee_file:
+    uid_filename = f'{num}.csv'
+    username = user[0].get('username')    
+
+    # remember the 'w' will overwrite any data existing in given file
+    with open(uid_filename, mode='w') as employee_file:
         ''' creating writer oject to convert my data into a delimeted string'''
         ''' csv.QUOTE_ALL - Specifies the writer object to write CSV
         file with quotes around all the entries, non and numeric ones'''
