@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 Using what you did in the task #0, extend your
-Python script to export data in the CSV format.
+Python script to export user's data in the CSV format.
 API used: https://jsonplaceholder.typicode.com/
 """
 
