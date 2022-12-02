@@ -10,7 +10,7 @@ if __name__ == "__main__":
     import requests
     from sys import argv
 
-    num = argv[2]
+    num = argv[1]
     user_query = {'id': num}  # this is added as query parameter
     # that are appended to the endpoint URL
     response_1 = requests.get("https://jsonplaceholder.typicode.com/users",
