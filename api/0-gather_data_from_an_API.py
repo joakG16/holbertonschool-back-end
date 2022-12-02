@@ -10,7 +10,8 @@ if __name__ == "__main__":
     import requests
     from sys import argv
 
-    num = argv[1]
+    num = argv[1]  # remember python3 does not count as argument
+
     user_query = {'id': num}  # this is added as query parameter
     # that are appended to the endpoint URL
     response_1 = requests.get("https://jsonplaceholder.typicode.com/users",
@@ -25,18 +26,18 @@ if __name__ == "__main__":
 
     todo_list = response_2.json()
 
-    employee_name = user[0].get('name')
+    employee_name = user[0].get('name')  # retrieve value from given key
 
     completed_tasks = 0
     total_tasks = 0
     completed_task_title = []
+
     for task in todo_list:
         if task.get('completed') is True:
-            completed_task_title.append(task.get('title'))
+            completed_task_title.append(task.get('title'))  # create list
+            # from completed tasks
             completed_tasks += 1
-            total_tasks += 1
-        else:
-            total_tasks += 1
+        total_tasks += 1
 
     print("Employee {} is done with tasks({}/{}):"
           .format(employee_name, completed_tasks, total_tasks))
