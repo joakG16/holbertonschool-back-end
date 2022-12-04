@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""
-Using what you did in the task #0, extend your
+""" Using what you did in the task #0, extend your
 Python script to export user's data in the JSON format.
 API used: https://jsonplaceholder.typicode.com/
 """
@@ -11,16 +10,16 @@ if __name__ == "__main__":
     import requests
     from sys import argv
 
-    id_num = argv[1]  # remember python3 does not count as argument
+    id_num = argv[1]  # Remember python3 does not count as argument
 
-    ''' extracting desired user/employee '''
-    user_query = {'id': id_num}  # this is added as query parameter
+    ''' Extracting desired user/employee '''
+    user_query = {'id': id_num}  # This is added as query parameter
     # that are appended to the endpoint URL
     response_1 = requests.get("https://jsonplaceholder.typicode.com/users",
-                              params=user_query)  # endpoint URL
+                              params=user_query)  # Endpoint URL
 
-    ''' extracting desired user's TODO list'''
-    todo_query = {'userId': id_num}  # match todo list with user specified
+    ''' Extracting desired user's TODO list'''
+    todo_query = {'userId': id_num}  # Match todo list with user specified
     response_2 = requests.get("https://jsonplaceholder.typicode.com/todos",
                               params=todo_query)
 
@@ -29,11 +28,11 @@ if __name__ == "__main__":
     user_todo_list = response_2.json()
 
     username = user[0].get('username')
-    ''' creating list of dictionaries (user's tasks) (list comprehension)'''
+    ''' Creating list of dictionaries (user's tasks) (list comprehension)'''
     task = [{"task": task.get('title'), "username": username,
             "completed": task.get('completed')} for task in user_todo_list]
 
-    # creating dictionary with user as key and respective tasks as its values
+    # Creating dictionary with user as key and respective tasks as its values
     user_todo_dict = {}
     user_todo_dict[id_num] = task
 
