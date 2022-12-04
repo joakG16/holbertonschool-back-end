@@ -6,15 +6,13 @@ from sys import argv
 
 
 if __name__ == '__main__':
-    num = argv[1]
-    user_query = {'id': num}
-    response_1 = requests.get("https://jsonplaceholder.typicode.com/users",
-                              params=user_query)
-    todo_query = {'userId': num}
-    response_2 = requests.get("https://jsonplaceholder.typicode.com/todos",
-                              params=todo_query)
-    user = response_1.json()
-    todo_list = response_2.json()
+    uid = argv[1]
+    url = "https://jsonplaceholder.typicode.com/users/{}".format(uid)
+    user = requests.get(url).json()
+
+    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(
+        uid)
+    todo = requests.get(url).json()
 
     uid_filename = f'{num}.csv'
     with open(uid_filename, mode='w') as employee_file:
