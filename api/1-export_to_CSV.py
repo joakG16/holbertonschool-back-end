@@ -1,42 +1,24 @@
 #!/usr/bin/python3
-'''
-export employee data in the CSV format from
-request to api given
-'''
+"""
+export data in the CSV format
+"""
 import csv
 import requests
 from sys import argv
 
 
 if __name__ == '__main__':
-    ''' code should not be executed when imported '''
-    num = argv[1]
+    uid = argv[1]
+    url = "https://jsonplaceholder.typicode.com/users/{}".format(uid)
+    user = requests.get(url).json()
 
-    user_query = {'id': num}  # this is added as query parameter
-    # that are appended to the endpoint URL
-    response_1 = requests.get("https://jsonplaceholder.typicode.com/users",
-                              params=user_query)  # endpoint URL
+    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(
+        uid)
+    todo = requests.get(url).json()
 
-    todo_query = {'userId': num}  # match todo list with user specified
-    response_2 = requests.get("https://jsonplaceholder.typicode.com/todos",
-                              params=todo_query)
-
-    user = response_1.json()  # .json() is a builtin JSON decoder
-    # from request module, returning a list of dictionaries in this case
-    todo_list = response_2.json()
-
-    uid_filename = f'{num}.csv'
-    username = user[0].get('username')
-
-    # remember the 'w' will overwrite any data existing in given file
-    with open(uid_filename, mode='w') as employee_file:
-        ''' creating writer oject to convert my data into a delimeted string'''
-        ''' csv.QUOTE_ALL - Specifies the writer object to write CSV
-        file with quotes around all the entries, non and numeric ones'''
-        row_writer = csv.writer(employee_file, quoting=csv.QUOTE_ALL,
-                                delimiter=',')
-
-        for task in todo_list:
-            ''' converting data and then writing it into the .csv file '''
-            row_writer.writerow((task.get('userId'), username,
-                                 task.get('completed'), task.get('title')))
+    with open("{}.csv".format(uid), 'w', newline='') as csvfile:
+        taskwriter = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+        for t in todo:
+            taskwriter.writerow([int(uid), user.get('username'),
+                                 t.get('completed'),
+                                 t.get('title')])
