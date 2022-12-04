@@ -1,15 +1,16 @@
 #!/usr/bin/python3
-"""
+'''
 export employee data in the CSV format from
 request to api given
-"""
+'''
 import csv
 import requests
 from sys import argv
 
 
 if __name__ == '__main__':
-    num = argv[1]  # remember python3 does not count as argument
+    ''' code should not be executed when imported '''
+    num = argv[1]
 
     user_query = {'id': num}  # this is added as query parameter
     # that are appended to the endpoint URL
