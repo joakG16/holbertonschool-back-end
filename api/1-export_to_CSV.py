@@ -1,23 +1,22 @@
 #!/usr/bin/python3
-""" export data in the CSV format """
-import csv
-import requests
-from sys import argv
+""" extend your Python script to export data in the CSV format """
 
 
 if __name__ == '__main__':
-    uid = argv[1]
-    url = "https://jsonplaceholder.typicode.com/users/{}".format(uid)
-    user = requests.get(url).json()
+    import requests
+    from sys import argv
 
-    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(
-        uid)
-    todo = requests.get(url).json()
-
-    uid_filename = f'{num}.csv'
-    with open(uid_filename, mode='w') as employee_file:
-        row_writer = csv.writer(employee_file, quoting=csv.QUOTE_ALL,
-                                delimiter=',')
-        for task in todo_list:
-            row_writer.writerow((task.get('userId'), user[0].get('username'),
-                                 task.get('completed'), task.get('title')))
+    u_id = argv[1]
+    api_url = "https://jsonplaceholder.typicode.com/users/{}".format(u_id)
+    api_url2 = "https://jsonplaceholder.typicode.com/todos?userId={}"\
+        .format(u_id)
+    response = requests.get(api_url).json()
+    EMPLOYEE_NAME = response.get('username')
+    response = requests.get(api_url2).json()
+    f_name = u_id + '.csv'
+    with open(f_name, 'w', encoding='utf-8') as f:
+        for info in response:
+            TASK_COMPLETED_STATUS = info.get("completed")
+            TASK_TITLE = info.get("title")
+            f.write('"{}","{}","{}","{}"\n'.format(
+                u_id, EMPLOYEE_NAME, TASK_COMPLETED_STATUS, TASK_TITLE))
