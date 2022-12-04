@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-export data in the CSV format
-"""
+""" export data in the CSV format """
 import csv
 import requests
 from sys import argv
@@ -9,7 +7,7 @@ from sys import argv
 
 if __name__ == '__main__':
     num = argv[1]
-    user_query = {'id': num} 
+    user_query = {'id': num}
     response_1 = requests.get("https://jsonplaceholder.typicode.com/users",
                               params=user_query)
     todo_query = {'userId': num}
