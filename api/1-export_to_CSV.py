@@ -9,7 +9,6 @@ from sys import argv
 
 
 if __name__ == '__main__':
-
     num = argv[1]  # remember python3 does not count as argument
 
     user_query = {'id': num}  # this is added as query parameter
