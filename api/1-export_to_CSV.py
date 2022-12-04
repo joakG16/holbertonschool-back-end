@@ -1,15 +1,14 @@
 #!/usr/bin/python3
 """
-Using what you did in the task #0, extend your
-Python script to export user's data in the CSV format.
-API used: https://jsonplaceholder.typicode.com/
+export employee data in the CSV format from
+request to api given
 """
+import csv
+import requests
+from sys import argv
 
 
-if __name__ == "__main__":
-    import csv
-    import requests
-    from sys import argv
+if __name__ == '__main__':
 
     num = argv[1]  # remember python3 does not count as argument
 
